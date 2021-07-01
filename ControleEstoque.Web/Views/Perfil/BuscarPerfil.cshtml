@@ -1,0 +1,69 @@
+﻿@model List<ControleEstoque.Web.Models.PerfilUsuarioModel>
+@{
+    ViewBag.Title = "Cadastro de Pefil";
+}
+<style>
+     #grid_cadastro > thead > tr th:nth-child(2) {
+        width: 110px;
+    }
+
+    #grid_cadastro > thead > tr th:nth-child(3) {
+        width: 200px;
+    }
+
+    #cadastro {
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    #cadastro_cabecalho {
+        border-bottom: 1px #dddddd solid;
+    }
+
+    #cadastro_conteudo {
+        margin-top: 20px;
+    }
+
+    #cabecalho_grid {
+        margin-bottom: 20px;
+    }
+</style>
+<div id="cadastro">
+    <section id="cadastro_cabecalho">
+        <h1>@ViewBag.Title</h1>
+    </section>
+    <section id="cadastro_conteudo">
+        <div id="cabecalho_grid"  class="row">
+            <div class="col-md-12">
+                <a id="btn_incluir" class="btn btn-success" role="button"><i class="glyphicon glyphicon-plus"></i>Incluir</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table id="grid_cadastro" class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Ativo</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var Item in Model)
+                        {
+                        <tr data-id="@Item.Id">
+                            <td>@Item.Nome</td>                          
+                            <td>@{var ativo = (Item.Status ? "SIM" : "NÃO");}@ativo</td>
+                            <td>
+                                <a class="btn btn-primary btn-alterar" role="button"><i class="glyphicon glyphicon-pencil">Alterar</i></a>
+                                <a class="btn btn-danger btn-excluir" role="button"><i class="glyphicon glyphicon-trash">Excluir</i></a>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+
